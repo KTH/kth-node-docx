@@ -29,6 +29,6 @@ module.exports = {
     data[key || 'xml'] = xml
     doc.setData(data)
     doc.render()
-    return doc.getZip().generate({type: 'nodebuffer'})
-  }
+    return doc.getZip().generate({ type: 'nodebuffer' })
+  },
 }

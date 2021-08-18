@@ -8,27 +8,21 @@ describe('element', function () {
   const template = factory({
     tagName: 'x',
     validAttributes: ['foo'],
-    validChildren: ['x']
+    validChildren: ['x'],
   })
 
   const otherTemplate = factory({
-    tagName: 'y'
+    tagName: 'y',
   })
 
   describe('#create', function () {
     it('should throw an error when invalid attribute', function () {
-      assert.throws(
-        () => template(null, {baz: 123}),
-        'One or more invalid attributes.'
-      )
+      assert.throws(() => template(null, { baz: 123 }), 'One or more invalid attributes.')
     })
 
     it('should throw an error when invalid child', function () {
       var children = [otherTemplate()]
-      assert.throws(
-        () => template(null, null, children),
-        'One or more invalid children.'
-      )
+      assert.throws(() => template(null, null, children), 'One or more invalid children.')
     })
   })
 
@@ -66,10 +60,7 @@ describe('element', function () {
 
     it('should only allow valid children', function () {
       var element = template()
-      assert.throws(
-        () => element.append(otherTemplate()),
-        'Invalid child: "y".'
-      )
+      assert.throws(() => element.append(otherTemplate()), 'Invalid child: "y".')
     })
   })
 
@@ -83,10 +74,7 @@ describe('element', function () {
     it('should only allow valid attributes', function () {
       var element = template()
 
-      assert.throws(
-        () => element.attr('baz', 123),
-        'Invalid attribute: "baz".'
-      )
+      assert.throws(() => element.attr('baz', 123), 'Invalid attribute: "baz".')
     })
   })
 })

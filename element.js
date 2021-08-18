@@ -34,7 +34,7 @@ module.exports = function (config) {
   const defaults = {
     tagName: '',
     validAttributes: [],
-    validChildren: []
+    validChildren: [],
   }
 
   let _config = R.merge(defaults, config || {})
@@ -57,7 +57,7 @@ module.exports = function (config) {
       throw new Error('One or more invalid attributes.')
     }
 
-    let tagNames = R.map((child) => child.getTagName(), _children)
+    let tagNames = R.map(child => child.getTagName(), _children)
 
     if (!R.all(_isValidChildTagName, tagNames)) {
       throw new Error('One or more invalid children.')
@@ -115,18 +115,18 @@ module.exports = function (config) {
        * Renders the element to an XML string.
        * @returns {String} an XML string
        */
-      render: publicRender
+      render: publicRender,
     }
 
-    function publicGetTagName () {
+    function publicGetTagName() {
       return _config.tagName
     }
 
-    function publicGetChild (index) {
+    function publicGetChild(index) {
       return _children[index]
     }
 
-    function publicAppend (child) {
+    function publicAppend(child) {
       if (!_isValidChildTagName(child.getTagName())) {
         throw new Error(`Invalid child: "${child.getTagName()}".`)
       }
@@ -135,12 +135,12 @@ module.exports = function (config) {
       return element
     }
 
-    function publicAppendAll (children) {
+    function publicAppendAll(children) {
       R.forEach(publicAppend, children)
       return element
     }
 
-    function publicText (text) {
+    function publicText(text) {
       if (text !== undefined) {
         _text = text
         return element
@@ -149,7 +149,7 @@ module.exports = function (config) {
       return _text
     }
 
-    function publicAttr (name, value) {
+    function publicAttr(name, value) {
       if (!_isValidAttributeName(name)) {
         throw new Error(`Invalid attribute: "${name}".`)
       }
@@ -162,19 +162,27 @@ module.exports = function (config) {
       return element
     }
 
-    function publicRender () {
+    function publicRender() {
       var output = `<${_config.tagName}`
 
-      output += R.reduce((acc, name) => {
-        return acc + ` ${name}="${_attributes[name]}"`
-      }, '', R.keys(_attributes))
+      output += R.reduce(
+        (acc, name) => {
+          return acc + ` ${name}="${_attributes[name]}"`
+        },
+        '',
+        R.keys(_attributes)
+      )
 
       if (_children.length || _text) {
         output += '>'
 
-        output += R.reduce((acc, child) => {
-          return acc + child.render()
-        }, '', _children)
+        output += R.reduce(
+          (acc, child) => {
+            return acc + child.render()
+          },
+          '',
+          _children
+        )
 
         if (_text) {
           output += _text

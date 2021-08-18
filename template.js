@@ -3,7 +3,7 @@
 const R = require('ramda')
 const docx = require('./docx')
 
-function _isNonEmpty (obj) {
+function _isNonEmpty(obj) {
   return !!obj && !R.isEmpty(obj)
 }
 
@@ -67,7 +67,7 @@ const template = {
     decimal: 'decimal',
     end: 'end',
     num: 'num',
-    start: 'start'
+    start: 'start',
   },
 
   /**
@@ -81,7 +81,7 @@ const template = {
     hyphen: 'hyphen',
     middleDot: 'middleDot',
     none: 'none',
-    underscore: 'underscore'
+    underscore: 'underscore',
   },
 
   /**
@@ -107,7 +107,7 @@ const template = {
     var defaults = {
       val: template.tabVal.start,
       pos: 0,
-      leader: template.tabLeader.none
+      leader: template.tabLeader.none,
     }
 
     if (!options) {
@@ -131,7 +131,7 @@ const template = {
   tabs: function (tabs) {
     var el = docx.tabs()
 
-    el.appendAll(R.map(template.tab, (tabs || [])))
+    el.appendAll(R.map(template.tab, tabs || []))
 
     return el
   },
@@ -148,7 +148,7 @@ const template = {
       start: 0,
       end: 0,
       hanging: 0,
-      firstLine: 0
+      firstLine: 0,
     }
 
     options = R.merge(defaults, options || {})
@@ -182,7 +182,7 @@ const template = {
 
     var defaults = {
       before: 0,
-      after: 0
+      after: 0,
     }
 
     options = R.merge(defaults, options || {})
@@ -207,7 +207,7 @@ const template = {
       color: '',
       bold: false,
       italic: false,
-      underline: false
+      underline: false,
     }
 
     options = R.merge(defaults, options || {})
@@ -254,7 +254,7 @@ const template = {
       indentation: {},
       spacing: {},
       style: {},
-      tabs: []
+      tabs: [],
     }
 
     options = R.merge(defaults, options || {})
@@ -325,10 +325,7 @@ const template = {
    * @returns {Element} a docx rFont element
    */
   font: function (font) {
-    return docx.rFonts()
-      .attr('w:cs', font)
-      .attr('w:ascii', font)
-      .attr('w:hAnsi', font)
+    return docx.rFonts().attr('w:cs', font).attr('w:ascii', font).attr('w:hAnsi', font)
   },
 
   /**
@@ -370,9 +367,7 @@ const template = {
    * @returns {Element} a docx r element with an instrText element
    */
   hyperlink: function (url) {
-    return docx.r()
-      .append(docx.instrText(`HYPERLINK &quot;${url}&quot; `)
-        .attr('xml:space', 'preserve'))
+    return docx.r().append(docx.instrText(`HYPERLINK &quot;${url}&quot; `).attr('xml:space', 'preserve'))
   },
 
   /**
@@ -389,9 +384,9 @@ const template = {
       template.hyperlink(url),
       template.fldSeparate(),
       template.text(text, style, true),
-      template.fldEnd()
+      template.fldEnd(),
     ]
-  }
+  },
 }
 
 module.exports = template

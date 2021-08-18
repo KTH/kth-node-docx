@@ -11,11 +11,10 @@ describe('template', () => {
       var tab = template.tab({
         val: template.tabVal.start,
         pos: 700,
-        leader: template.tabLeader.none
+        leader: template.tabLeader.none,
       })
 
-      assert.equal(tab.render(),
-        '<w:tab w:val="start" w:pos="700" w:leader="none"/>')
+      assert.equal(tab.render(), '<w:tab w:val="start" w:pos="700" w:leader="none"/>')
     })
   })
 
@@ -25,20 +24,22 @@ describe('template', () => {
         {
           val: template.tabVal.end,
           pos: 700,
-          leader: template.tabLeader.none
+          leader: template.tabLeader.none,
         },
         {
           val: template.tabVal.start,
           pos: 850,
-          leader: template.tabLeader.none
-        }
+          leader: template.tabLeader.none,
+        },
       ])
 
-      assert.equal(tabs.render(),
+      assert.equal(
+        tabs.render(),
         '<w:tabs>' +
-        '<w:tab w:val="end" w:pos="700" w:leader="none"/>' +
-        '<w:tab w:val="start" w:pos="850" w:leader="none"/>' +
-        '</w:tabs>')
+          '<w:tab w:val="end" w:pos="700" w:leader="none"/>' +
+          '<w:tab w:val="start" w:pos="850" w:leader="none"/>' +
+          '</w:tabs>'
+      )
     })
   })
 
@@ -47,11 +48,10 @@ describe('template', () => {
       var ind = template.indentation({
         start: 500,
         end: 500,
-        hanging: 500
+        hanging: 500,
       })
 
-      assert.equal(ind.render(),
-        '<w:ind w:start="500" w:end="500" w:hanging="500"/>')
+      assert.equal(ind.render(), '<w:ind w:start="500" w:end="500" w:hanging="500"/>')
     })
   })
 
@@ -59,7 +59,7 @@ describe('template', () => {
     it('should create spacing', () => {
       var sp = template.spacing({
         before: 100,
-        after: 100
+        after: 100,
       })
 
       assert.equal(sp.render(), '<w:spacing w:before="100" w:after="100"/>')
@@ -71,11 +71,10 @@ describe('template', () => {
       var style = template.style({
         color: '000000',
         size: 20,
-        bold: true
+        bold: true,
       })
 
-      assert.equal(style.render(),
-        '<w:rPr><w:sz w:val="20"/><w:color w:val="000000"/><w:b/></w:rPr>')
+      assert.equal(style.render(), '<w:rPr><w:sz w:val="20"/><w:color w:val="000000"/><w:b/></w:rPr>')
     })
   })
 
@@ -86,15 +85,18 @@ describe('template', () => {
     })
 
     it('should create text with style', () => {
-      var text = template.text('hello', {
-        color: '0000FF'
-      }, true)
+      var text = template.text(
+        'hello',
+        {
+          color: '0000FF',
+        },
+        true
+      )
 
-      assert.equal(text.render(),
-        '<w:r>' +
-        '<w:rPr><w:color w:val="0000FF"/></w:rPr>' +
-        '<w:t xml:space="preserve">hello</w:t>' +
-        '</w:r>')
+      assert.equal(
+        text.render(),
+        '<w:r>' + '<w:rPr><w:color w:val="0000FF"/></w:rPr>' + '<w:t xml:space="preserve">hello</w:t>' + '</w:r>'
+      )
     })
   })
 
@@ -102,7 +104,7 @@ describe('template', () => {
     it('should create a link structure', () => {
       var link = template.link('example', 'https://www.example.com/', {
         underline: true,
-        color: '0000FF'
+        color: '0000FF',
       })
 
       assert.equal(link.length, 5)

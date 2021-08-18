@@ -5,78 +5,78 @@ var data = require('./data')
 var docx = require('../index')
 var tmpl = docx.template
 
-var header1 = (text) => {
+var header1 = text => {
   return tmpl
     .paragraph({
       keepLines: true,
       keepNext: true,
       spacing: {
         before: 480,
-        after: 240
-      }
+        after: 240,
+      },
     })
-    .append(tmpl.text(text, {
-      bold: true,
-      color: '003f5f',
-      size: 36
-    }))
+    .append(
+      tmpl.text(text, {
+        bold: true,
+        color: '003f5f',
+        size: 36,
+      })
+    )
     .render()
 }
 
-var header2 = (text) => {
+var header2 = text => {
   return tmpl
     .paragraph({
       keepLines: true,
       keepNext: true,
       spacing: {
         before: 240,
-        after: 120
-      }
+        after: 120,
+      },
     })
-    .append(tmpl.text(text, {
-      bold: true,
-      color: '006f8f',
-      size: 30
-    }))
+    .append(
+      tmpl.text(text, {
+        bold: true,
+        color: '006f8f',
+        size: 30,
+      })
+    )
     .render()
 }
 
 var tab = () => tmpl.run(tmpl.tab())
 
-var reference = (pub) => {
+var reference = pub => {
   return tmpl
     .paragraph({
       keepLines: true,
       spacing: {
-        after: 120
+        after: 120,
       },
       indentation: {
         start: 850,
-        hanging: 850
+        hanging: 850,
       },
       tabs: [
-        {pos: 700, val: tmpl.tabVal.end},
-        {pos: 850, val: tmpl.tabVal.start}
-      ]
+        { pos: 700, val: tmpl.tabVal.end },
+        { pos: 850, val: tmpl.tabVal.start },
+      ],
     })
     .appendAll([
       tab(),
       tmpl.text(`[${pub.index}]`),
       tab(),
       tmpl.text(pub.authors),
-      tmpl.text(pub.etAl, {italic: true}, true)
+      tmpl.text(pub.etAl, { italic: true }, true),
     ])
     .appendAll(
       tmpl.link(pub.description, pub.link, {
         color: '0000ff',
-        underline: true
+        underline: true,
       })
     )
-    .appendAll([
-      tmpl.text(pub.from),
-      tmpl.text(pub.title, {italic: true}, true),
-      tmpl.text(pub.details)
-    ])
+    .appendAll([tmpl.text(pub.from), tmpl.text(pub.title, { italic: true }, true), tmpl.text(pub.details)])
     .render()
 }
 
@@ -104,7 +104,7 @@ fs.readFile(__dirname + '/xml.docx', 'binary', (err, template) => {
 
   var doc = docx.generate(xml, template, 'publications')
 
-  fs.writeFile(__dirname + '/out.docx', doc, (err) => {
+  fs.writeFile(__dirname + '/out.docx', doc, err => {
     if (err) {
       console.log(err)
     }

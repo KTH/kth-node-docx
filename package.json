@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "prepare": "bash -c 'if [ -f ./node_modules/.bin/husky ]; then husky install; fi'"
+    "prepare": "bash -c 'if [ -f ./node_modules/.bin/husky ]; then husky install; fi'",
+    "prettier:all": "prettier --write \"**/*.js\""
   },
   "repository": {
     "type": "git",
