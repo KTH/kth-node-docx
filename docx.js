@@ -1,4 +1,4 @@
-var factory = require('./element')
+const factory = require('./element')
 
 // http://officeopenxml.com/anatomyofOOXML.php
 module.exports = {
