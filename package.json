@@ -4,6 +4,7 @@
   "description": "A docx export module for Node.js applications.",
   "main": "index.js",
   "scripts": {
+    "build": "echo 'OK'",
     "test": "mocha",
     "prepare": "bash -c 'if [ -f ./node_modules/.bin/husky ]; then husky install; fi'",
     "prettier:all": "prettier --write \"**/*.js\""
