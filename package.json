@@ -1,5 +1,5 @@
 {
-  "name": "kth-node-docx",
+  "name": "@kth/kth-node-docx",
   "version": "2.0.0",
   "description": "A docx export module for Node.js applications.",
   "main": "index.js",
@@ -12,13 +12,20 @@
     "type": "git",
     "url": "https://github.com/KTH/kth-node-docx"
   },
+  "author": {
+    "name": "KTH",
+    "email": "infosys@kth.se",
+    "url": "https://github.com/KTH"
+  },
   "dependencies": {
     "docxtemplater": "^3.22.6",
     "jszip": "^2.6.1",
     "ramda": "^0.27.1"
   },
-  "keywords": [],
-  "private": true,
+  "keywords": [
+    "kth"
+  ],
+  "homepage": "https://github.com/KTH/kth-node-docx#readme",
   "license": "MIT",
   "devDependencies": {
     "@kth/eslint-config-kth": "^1.0.15",
