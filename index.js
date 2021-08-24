@@ -1,7 +1,7 @@
 'use strict'
 
 const DocxTemplater = require('docxtemplater')
-const JSZip = require('jszip/lib')
+const PizZip = require('pizzip')
 const docx = require('./docx')
 const template = require('./template')
 
@@ -25,7 +25,7 @@ module.exports = {
    * @returns {*|String|Uint8Array|ArrayBuffer|Buffer|Blob}
    */
   generate(xml, buffer, key) {
-    const zip = new JSZip(buffer)
+    const zip = new PizZip(buffer)
     const doc = new DocxTemplater().loadZip(zip)
     const data = {}
     data[key || 'xml'] = xml
