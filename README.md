@@ -1,3 +1,5 @@
+__⚠️ Archived at 2023-09-12, since none of our apps is currently using it. ⚠️__
+
 # docx generator
 
 Given a `docx` file with the following content:
